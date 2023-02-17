@@ -38,7 +38,7 @@ import java.util.jar.Manifest;
 public class JarRsrcLoader {
 
     private static class ManifestInfo {
-        String rsrcMainClass;
+        String rsrcMainClass ;
         String[] rsrcClassPath;
     }
 
@@ -47,8 +47,10 @@ public class JarRsrcLoader {
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         URL.setURLStreamHandlerFactory(new RsrcURLStreamHandlerFactory(cl));
         URL[] rsrcUrls = new URL[mi.rsrcClassPath.length];
+        System.out.println("rsrcClassPath :");
         for (int i = 0; i < mi.rsrcClassPath.length; i++) {
             String rsrcPath = mi.rsrcClassPath[i];
+            System.out.printf(rsrcPath+"\n");
             if (rsrcPath.endsWith(JIJConstants.PATH_SEPARATOR))
                 rsrcUrls[i] = new URL(JIJConstants.INTERNAL_URL_PROTOCOL_WITH_COLON + rsrcPath);
             else
